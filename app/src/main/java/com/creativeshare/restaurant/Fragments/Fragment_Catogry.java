@@ -50,7 +50,7 @@ return new Fragment_Catogry();
             catogry_model_slides.add(catogry_model_slide);
         }
 catogries_adapter=new Catogries_Adapter(catogry_model_slides,activity);
-        recyclerView.setLayoutManager(new GridLayoutManager(activity,2));
+        recyclerView.setLayoutManager(new GridLayoutManager(activity,1));
         recyclerView.setAdapter(catogries_adapter);
 
     }

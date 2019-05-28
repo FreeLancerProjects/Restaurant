@@ -48,7 +48,7 @@ current_lang=preferences.getlang(activity);
     public void onBindViewHolder(@NonNull final Eyas_Holder viewHolder, int i) {
         Catogry_Model_Slide model = list.get(i);
         viewHolder.txt.setText(model.getName());
-        viewHolder.txt2.setText(model.getName());
+        viewHolder.txt2.setText("5555");
         Picasso.with(context).load(model.getImage()).fit().into(viewHolder.im);
 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -77,8 +77,8 @@ CheckBox checkBox;
             im=itemView.findViewById(R.id.img1);
             checkBox=itemView.findViewById(R.id.checkbox);
             if(current_lang.equals("ar")){
-                txt.setGravity(Gravity.LEFT);
-                txt2.setGravity(Gravity.RIGHT);
+                txt.setGravity(Gravity.START);
+                txt2.setGravity(Gravity.END);
             }
         }
 

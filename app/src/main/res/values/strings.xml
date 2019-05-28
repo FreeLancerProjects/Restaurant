@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">Gornal Gardens</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="home">Home</string>
     <string name="Cart" translatable="false">Cart</string>
     <string name="Language">Ar</string>
     <string name="add_to_cart">Add to Cart</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
 </resources>

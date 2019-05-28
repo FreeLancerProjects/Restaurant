@@ -12,6 +12,8 @@
         android:layout_height="match_parent"
         android:layoutAnimation="@anim/layou_anim"
         android:background="@color/gray1"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

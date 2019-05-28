@@ -49,6 +49,8 @@
         android:layout_height="0dp"
         android:layoutAnimation="@anim/layou_anim"
         android:background="@color/gray1"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal"
         />
 <Button
     android:id="@+id/add_cart"
