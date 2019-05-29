@@ -14,12 +14,15 @@ import com.creativeshare.restaurant.R;
 import com.creativeshare.restaurant.Tags.Tags;
 import com.creativeshare.restaurant.preferences.Preferences;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    Preferences preferences;
-
-    FrameLayout im;
+   private Preferences preferences;
+private CircleImageView circleImageView;
+   private FrameLayout im;
+    Animation animation1 ;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(Language.updateResources(newBase, Language.getLanguage(newBase)));
@@ -32,10 +35,14 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.splashscreenmaker);
         preferences=Preferences.getInstance();
 im=(FrameLayout)findViewById(R.id.fl);
+circleImageView=findViewById(R.id.progress_circular);
+circleImageView.setImageResource(R.drawable.logo);
          Animation animation;
 
 animation= AnimationUtils.loadAnimation(getBaseContext(), R.anim.lanuch);
         im.startAnimation(animation);
+     animation1=
+                AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_anomation);
 animation.setAnimationListener(new Animation.AnimationListener() {
     @Override
     public void onAnimationStart(Animation animation) {
@@ -44,13 +51,28 @@ animation.setAnimationListener(new Animation.AnimationListener() {
 
     @Override
     public void onAnimationEnd(Animation animation) {
-            Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
-            i.putExtra("param","4");
 
-            startActivity(i);
+        circleImageView.startAnimation(animation1);
 
-        finish();
 
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
+    }
+});
+animation1.setAnimationListener(new Animation.AnimationListener() {
+    @Override
+    public void onAnimationStart(Animation animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+Intent intent=new Intent(SplashScreenActivity.this,MainActivity.class);
+startActivity(intent);
+finish();
     }
 
     @Override

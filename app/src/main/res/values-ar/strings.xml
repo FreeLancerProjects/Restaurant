@@ -3,6 +3,6 @@
     <string name="app_name">حدائق الجلنار</string>
     <string name="home">الرئيسية</string>
     <string name="Cart" >السلة</string>
-    <string name="Language">إنجليزى</string>
+    <string name="Language">En</string>
     <string name="add_to_cart">اضف الى السله</string>
 </resources>
