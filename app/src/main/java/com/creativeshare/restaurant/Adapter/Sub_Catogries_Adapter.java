@@ -47,8 +47,8 @@ current_lang=preferences.getlang(activity);
     @Override
     public void onBindViewHolder(@NonNull final Eyas_Holder viewHolder, int i) {
         Catogry_Model_Slide model = list.get(i);
-        viewHolder.txt.setText(model.getName());
-        viewHolder.txt2.setText("5555");
+        viewHolder.txt_name.setText(model.getName());
+        viewHolder.txt_price.setText("555");
         Picasso.with(context).load(model.getImage()).fit().into(viewHolder.im);
 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -66,19 +66,19 @@ viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
         return list.size();
     }
     class Eyas_Holder extends RecyclerView.ViewHolder {
-TextView txt,txt2;
+TextView txt_name,txt_price;
 ImageView im;
 CheckBox checkBox;
 
         public Eyas_Holder(@NonNull View itemView) {
             super(itemView);
-            txt2=(TextView)itemView.findViewById(R.id.txt2);
-            txt=itemView.findViewById(R.id.txt);
+            txt_name=(TextView)itemView.findViewById(R.id.txt_name);
+            txt_price=itemView.findViewById(R.id.txt_price);
             im=itemView.findViewById(R.id.img1);
             checkBox=itemView.findViewById(R.id.checkbox);
             if(current_lang.equals("ar")){
-                txt.setGravity(Gravity.START);
-                txt2.setGravity(Gravity.END);
+                txt_name.setGravity(Gravity.END);
+                txt_price.setGravity(Gravity.END);
             }
         }
 

@@ -67,7 +67,7 @@ public class Fragment_Sub_Catogry extends Fragment {
             catogry_model_slides.add(catogry_model_slide);
         }
         catogries_adapter=new Sub_Catogries_Adapter(catogry_model_slides,activity);
-        recyclerView.setLayoutManager(new GridLayoutManager(activity,4));
+        recyclerView.setLayoutManager(new GridLayoutManager(activity,2));
         recyclerView.setAdapter(catogries_adapter);
 back.setOnClickListener(new View.OnClickListener() {
     @Override
