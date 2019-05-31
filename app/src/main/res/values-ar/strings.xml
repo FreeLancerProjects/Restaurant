@@ -5,4 +5,10 @@
     <string name="Cart" >السلة</string>
     <string name="Language">En</string>
     <string name="add_to_cart">اضف الى السله</string>
+    <string name="quantity">الكميه</string>
+    <string name="total_ptice">السعر الكلى</string>
+    <string name="empty">افرغ السله</string>
+    <string name="detials">تفاصيل</string>
+    <string name="price">السعر</string>
+    <string name="cancell">الغاء</string>
 </resources>

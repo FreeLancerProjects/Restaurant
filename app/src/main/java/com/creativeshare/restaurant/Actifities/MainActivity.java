@@ -2,6 +2,7 @@ package com.creativeshare.restaurant.Actifities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import com.creativeshare.restaurant.Fragments.Fragment_Home;
 import com.creativeshare.restaurant.Fragments.Fragment_Sub_Catogry;
 import com.creativeshare.restaurant.Language.Language;
 import com.creativeshare.restaurant.R;
+import com.creativeshare.restaurant.Room_Database.MyDoe;
+import com.creativeshare.restaurant.Room_Database.My_Database;
 
 public class MainActivity extends AppCompatActivity {
     private Fragment_Home fragment_home;
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment_Sub_Catogry fragment_sub_catogry;
     int fragment_count = 0;
     FragmentManager fragmentManager;
+
+
+    public static My_Database my_database;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             fragmentManager = this.getSupportFragmentManager();
+            my_database= Room.databaseBuilder(getApplicationContext(), My_Database.class,"orderdb").allowMainThreadQueries().build();
             move_between_fragment();
             DisplayFragmentHome();
             DisplayFragmentCatogry();
@@ -63,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         if (fragment_catogry == null) {
             fragment_catogry = Fragment_Catogry.newInstance();
         }
-if(fragment_cart!=null&&fragment_cart.isAdded()){
-    fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter,R.anim.exit).hide(fragment_cart).commit();
-}
+        if (fragment_cart != null && fragment_cart.isAdded()) {
+            fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).hide(fragment_cart).commit();
+        }
         if (fragment_catogry.isAdded()) {
             fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).show(fragment_catogry).commit();
         } else {
@@ -77,13 +84,14 @@ if(fragment_cart!=null&&fragment_cart.isAdded()){
             fragment_home.UpdateAHBottomNavigationPosition(0);
         }
     }
+
     public void DisplayFragmentCart() {
 
         if (fragment_cart == null) {
             fragment_cart = Fragment_Cart.newInstance();
         }
-        if(fragment_catogry!=null&&fragment_catogry.isAdded()){
-            fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter,R.anim.exit).hide(fragment_catogry).commit();
+        if (fragment_catogry != null && fragment_catogry.isAdded()) {
+            fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).hide(fragment_catogry).commit();
         }
         if (fragment_cart.isAdded()) {
             fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).show(fragment_cart).commit();
@@ -96,12 +104,13 @@ if(fragment_cart!=null&&fragment_cart.isAdded()){
             fragment_home.UpdateAHBottomNavigationPosition(1);
         }
     }
-    public void DisplayFragmentSub_Catogry() {
+
+    public void DisplayFragmentSub_Catogry(String name, int id) {
 
         fragment_count += 1;
-        if (fragment_sub_catogry == null) {
-            fragment_sub_catogry = Fragment_Sub_Catogry.newInstance();
-        }
+
+        fragment_sub_catogry = Fragment_Sub_Catogry.newInstance(name,id);
+
 
         if (fragment_sub_catogry.isAdded()) {
             fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).show(fragment_sub_catogry).commit();
@@ -146,4 +155,15 @@ if(fragment_cart!=null&&fragment_cart.isAdded()){
     }
 
 
+    public void updatecart() {
+        if(fragment_cart!=null){
+            fragment_cart.update_database();
+        }
+    }
+
+    public void updatetotal() {
+        if(fragment_cart!=null){
+            fragment_cart.update_total();
+        }
+    }
 }

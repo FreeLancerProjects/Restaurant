@@ -2,59 +2,49 @@ package com.creativeshare.restaurant.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Catogry_Model_Slide
 
 
   implements Serializable {
+List<Cat> cat;
 
-
-
-            private int id;
-            private String name;
-
-            private int image;
-            private String created_at;
-            private String updated_at;
-
-            public int getId() {
-                return id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public int getImage() {
-                return image;
-            }
-
-            public String getCreated_at() {
-                return created_at;
-            }
-
-            public String getUpdated_at() {
-                return updated_at;
-            }
-
-    public void setId(int id) {
-        this.id = id;
+    public List<Cat> getCat() {
+        return cat;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public class Cat implements Serializable {
 
-    public void setImage(int image) {
-        this.image = image;
-    }
+        private int id;
+        private String ar_title;
+        private String en_title;
+        private String cat_image;
+        private String created_at;
+        private String updated_at;
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
+        public String getAr_title() {
+            return ar_title;
+        }
+
+        public String getEn_title() {
+            return en_title;
+        }
+
+        public String getCat_image() {
+            return cat_image;
+        }
+
+        public String getCreated_at() {
+            return created_at;
+        }
+
+        public String getUpdated_at() {
+            return updated_at;
+        }
     }
 }
-
