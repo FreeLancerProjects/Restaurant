@@ -17,6 +17,8 @@ public class Sub_Catogry_Model_Slide
         private int id;
         private String ar_title;
         private String en_title;
+        private String ar_des;
+        private String en_des;
         private String image;
         private String price;
         private int cat_id;
@@ -33,6 +35,14 @@ public class Sub_Catogry_Model_Slide
 
         public String getEn_title() {
             return en_title;
+        }
+
+        public String getAr_des() {
+            return ar_des;
+        }
+
+        public String getEn_des() {
+            return en_des;
         }
 
         public String getImage() {

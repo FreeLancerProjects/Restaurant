@@ -3,9 +3,11 @@ package com.creativeshare.restaurant.Fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.creativeshare.restaurant.Actifities.MainActivity;
@@ -38,6 +41,7 @@ import retrofit2.Response;
 
 public class Fragment_Sub_Catogry extends Fragment {
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     private Button add_cart;
     private ImageView back;
     private TextView title;
@@ -78,6 +82,7 @@ public class Fragment_Sub_Catogry extends Fragment {
         Api.getService().getsubcatogries(id).enqueue(new Callback<Sub_Catogry_Model_Slide>() {
             @Override
             public void onResponse(Call<Sub_Catogry_Model_Slide> call, Response<Sub_Catogry_Model_Slide> response) {
+                progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     catogry_model_slides = response.body().getSub();
                     catogries_adapter = new Sub_Catogries_Adapter(catogry_model_slides, activity);
@@ -91,6 +96,7 @@ public class Fragment_Sub_Catogry extends Fragment {
             @Override
             public void onFailure(Call<Sub_Catogry_Model_Slide> call, Throwable t) {
                 Log.e("code", t.getMessage());
+                progressBar.setVisibility(View.GONE);
 
             }
         });
@@ -103,6 +109,8 @@ public class Fragment_Sub_Catogry extends Fragment {
         back = view.findViewById(R.id.back);
         title = view.findViewById(R.id.tv_title);
         add_cart = view.findViewById(R.id.add_cart);
+        progressBar = (ProgressBar) view.findViewById(R.id.progBar2);
+        progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         title.setText(getArguments().getString(Tag));
         preferences = Preferences.getInstance();
@@ -121,6 +129,8 @@ public class Fragment_Sub_Catogry extends Fragment {
             @Override
             public void onClick(View v) {
                 addtocart();
+                activity.Back();
+                activity.DisplayFragmentCart();
             }
         });
 

@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_Catogry">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.Fragment_Catogry"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
@@ -11,9 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutAnimation="@anim/layou_anim"
-        android:background="@color/gray1"
-        android:scrollbarStyle="outsideInset"
+
         android:scrollbars="horizontal"
         />
-
+    <ProgressBar
+        android:id="@+id/progBar2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

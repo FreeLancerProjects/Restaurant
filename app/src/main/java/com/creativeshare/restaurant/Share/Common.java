@@ -47,13 +47,20 @@ public class Common {
         Button btn_cancell = view.findViewById(R.id.No_cancell);
         TextView price = view.findViewById(R.id.tetxt_price);
         TextView tv_msg = view.findViewById(R.id.tv_msg);
+        TextView des=view.findViewById(R.id.des);
         MainActivity activity = (MainActivity) context;
 
         final Preferences preferences = Preferences.getInstance();
         if (preferences.getlang(activity).equals("ar")) {
             tv_msg.setText(model.getAr_title());
+            if(model.getAr_des()!=null){
+                des.setText(model.getAr_des());
+            }
         } else {
             tv_msg.setText(model.getEn_title());
+            if(model.getEn_des()!=null){
+                des.setText(model.getEn_des());
+            }
         }
         price.setText(model.getPrice());
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +79,7 @@ public class Common {
 
                     }
                     order.setPrice(model.getPrice());
-                    order.setPrices(Double.parseDouble(model.getPrice().toString().replaceAll("[^0-9\\.]", "")));
+                    order.setPrices(Double.parseDouble(model.getPrice().replaceAll("[^0-9\\.]", "")));
                     Bitmap bitmap = null;
                     try {
                         bitmap = BitmapFactory.decodeStream(new URL((Tags.IMAGE_URL_subcatogry + model.getImage())).openStream());

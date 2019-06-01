@@ -1,6 +1,9 @@
 package com.creativeshare.restaurant.Fragments;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.creativeshare.restaurant.Actifities.MainActivity;
 import com.creativeshare.restaurant.Adapter.Catogries_Adapter;
@@ -26,6 +30,7 @@ import retrofit2.Response;
 
 public class Fragment_Catogry extends Fragment {
 private RecyclerView recyclerView;
+private ProgressBar progressBar;
 private int image[];
 private String name[];
 private List<Catogry_Model_Slide.Cat> catogry_model_slides;
@@ -47,8 +52,11 @@ return new Fragment_Catogry();
         activity=(MainActivity)getActivity();
         image= new int[]{R.drawable.food1, R.drawable.food2, R.drawable.food3, R.drawable.food4};
         recyclerView=view.findViewById(R.id.catogry);
+        progressBar = (ProgressBar) view.findViewById(R.id.progBar2);
+        progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
-getAllCatogries();
+
+        getAllCatogries();
 
     }
 
@@ -56,6 +64,7 @@ getAllCatogries();
         Api.getService().getcateogries().enqueue(new Callback<Catogry_Model_Slide>() {
             @Override
             public void onResponse(Call<Catogry_Model_Slide> call, Response<Catogry_Model_Slide> response) {
+                progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     catogry_model_slides = response.body().getCat();
                     catogries_adapter = new Catogries_Adapter(catogry_model_slides, activity);
@@ -68,6 +77,8 @@ getAllCatogries();
             }
             @Override
             public void onFailure(Call<Catogry_Model_Slide> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+
                 Log.e("code",t.getMessage());
 
             }

@@ -8,7 +8,7 @@
     <string name="quantity">الكميه</string>
     <string name="total_ptice">السعر الكلى</string>
     <string name="empty">افرغ السله</string>
-    <string name="detials">تفاصيل</string>
+    <string name="detials"><a href="">تفاصيل</a></string>
     <string name="price">السعر</string>
     <string name="cancell">الغاء</string>
 </resources>
