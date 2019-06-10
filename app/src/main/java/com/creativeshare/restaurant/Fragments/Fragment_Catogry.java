@@ -50,11 +50,12 @@ return new Fragment_Catogry();
 
     private void ititview(View view) {
         activity=(MainActivity)getActivity();
-        image= new int[]{R.drawable.food1, R.drawable.food2, R.drawable.food3, R.drawable.food4};
         recyclerView=view.findViewById(R.id.catogry);
         progressBar = (ProgressBar) view.findViewById(R.id.progBar2);
         progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-
+        recyclerView.setItemViewCacheSize(25);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         getAllCatogries();
 
@@ -68,9 +69,10 @@ return new Fragment_Catogry();
                 if (response.isSuccessful()) {
                     catogry_model_slides = response.body().getCat();
                     catogries_adapter = new Catogries_Adapter(catogry_model_slides, activity);
-                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 1));
+                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 4));
                     recyclerView.setAdapter(catogries_adapter);
                 }
+
                 else {
                     Log.e("code",response.errorBody()+""+response.code());
                 }

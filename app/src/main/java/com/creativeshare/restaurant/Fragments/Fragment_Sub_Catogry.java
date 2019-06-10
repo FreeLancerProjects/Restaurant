@@ -86,7 +86,7 @@ public class Fragment_Sub_Catogry extends Fragment {
                 if (response.isSuccessful()) {
                     catogry_model_slides = response.body().getSub();
                     catogries_adapter = new Sub_Catogries_Adapter(catogry_model_slides, activity);
-                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 6));
                     recyclerView.setAdapter(catogries_adapter);
                 } else {
                     Log.e("code", response.errorBody() + "" + response.code());
@@ -106,6 +106,9 @@ public class Fragment_Sub_Catogry extends Fragment {
         activity = (MainActivity) getActivity();
         image = new int[]{R.drawable.food1, R.drawable.food2, R.drawable.food3, R.drawable.food4};
         recyclerView = view.findViewById(R.id.catogry);
+        recyclerView.setItemViewCacheSize(25);
+        recyclerView.setDrawingCacheEnabled(true);
+        recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         back = view.findViewById(R.id.back);
         title = view.findViewById(R.id.tv_title);
         add_cart = view.findViewById(R.id.add_cart);
