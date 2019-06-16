@@ -69,7 +69,7 @@ return new Fragment_Catogry();
                 if (response.isSuccessful()) {
                     catogry_model_slides = response.body().getCat();
                     catogries_adapter = new Catogries_Adapter(catogry_model_slides, activity);
-                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 4));
+                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 3));
                     recyclerView.setAdapter(catogries_adapter);
                 }
 

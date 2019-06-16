@@ -57,6 +57,7 @@ public class Fragment_Sub_Catogry extends Fragment {
     private ByteArrayOutputStream stream;
     private Bitmap bitmap;
     private Order order;
+    private boolean check = false;
 
     public static Fragment_Sub_Catogry newInstance(String name, int id) {
         Fragment_Sub_Catogry fragment_sub_catogry = new Fragment_Sub_Catogry();
@@ -86,7 +87,7 @@ public class Fragment_Sub_Catogry extends Fragment {
                 if (response.isSuccessful()) {
                     catogry_model_slides = response.body().getSub();
                     catogries_adapter = new Sub_Catogries_Adapter(catogry_model_slides, activity);
-                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 6));
+                    recyclerView.setLayoutManager(new GridLayoutManager(activity, 4));
                     recyclerView.setAdapter(catogries_adapter);
                 } else {
                     Log.e("code", response.errorBody() + "" + response.code());
@@ -132,14 +133,18 @@ public class Fragment_Sub_Catogry extends Fragment {
             @Override
             public void onClick(View v) {
                 addtocart();
-                activity.Back();
-                activity.DisplayFragmentCart();
+                if (check) {
+                    activity.Back();
+
+                    activity.DisplayFragmentCart();
+                }
             }
         });
 
     }
 
     private void addtocart() {
+        check = false;
         for (int i = 0; i < catogry_model_slides.size(); i++) {
             View view = recyclerView.getChildAt(i);
             CheckBox checkBox = view.findViewById(R.id.checkbox);
@@ -148,7 +153,7 @@ public class Fragment_Sub_Catogry extends Fragment {
             ImageView imageView = view.findViewById(R.id.img1);
             if (checkBox.isChecked()) {
                 order = new Order();
-
+                check = true;
                 order.setName(name.getText().toString());
                 order.setPrice(price.getText().toString());
                 order.setPrices(Double.parseDouble(price.getText().toString().replaceAll("[^0-9\\.]", "")));
@@ -168,16 +173,4 @@ public class Fragment_Sub_Catogry extends Fragment {
     }
 
 
-    public void change_rec() {
-        for (int i = 0; i < catogry_model_slides.size(); i++) {
-            View view = recyclerView.getChildAt(i);
-            CheckBox checkBox = view.findViewById(R.id.checkbox);
-            if (checkBox.getVisibility() == View.GONE) {
-                checkBox.setVisibility(View.VISIBLE);
-            } else {
-                checkBox.setVisibility(View.GONE);
-                checkBox.setChecked(false);
-            }
-        }
-    }
 }

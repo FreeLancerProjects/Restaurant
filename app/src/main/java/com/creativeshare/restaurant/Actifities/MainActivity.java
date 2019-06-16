@@ -9,9 +9,11 @@ import android.os.Bundle;
 
 import com.creativeshare.restaurant.Fragments.Fragment_Cart;
 import com.creativeshare.restaurant.Fragments.Fragment_Catogry;
+import com.creativeshare.restaurant.Fragments.Fragment_Details;
 import com.creativeshare.restaurant.Fragments.Fragment_Home;
 import com.creativeshare.restaurant.Fragments.Fragment_Sub_Catogry;
 import com.creativeshare.restaurant.Language.Language;
+import com.creativeshare.restaurant.Model.Sub_Catogry_Model_Slide;
 import com.creativeshare.restaurant.R;
 import com.creativeshare.restaurant.Room_Database.MyDoe;
 import com.creativeshare.restaurant.Room_Database.My_Database;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment_Catogry fragment_catogry;
     private Fragment_Cart fragment_cart;
     private Fragment_Sub_Catogry fragment_sub_catogry;
+    private Fragment_Details fragment_details;
     int fragment_count = 0;
     FragmentManager fragmentManager;
 
@@ -121,11 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void Changecheckboxvisibilty() {
-        if (fragment_sub_catogry != null && fragment_sub_catogry.isAdded()) {
-            fragment_sub_catogry.change_rec();
-        }
-    }
+
 
     public void move_between_fragment() {
         overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -166,4 +165,17 @@ public class MainActivity extends AppCompatActivity {
             fragment_cart.update_total();
         }
     }
+    public void DisplayFragmnetDetials(Sub_Catogry_Model_Slide.Sub sub) {
+        fragment_count += 1;
+
+        fragment_details = Fragment_Details.newInstance(sub);
+
+
+        if (fragment_details.isAdded()) {
+            fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).show(fragment_details).commit();
+        } else {
+            fragmentManager.beginTransaction().setCustomAnimations(R.anim.enter, R.anim.exit).add(R.id.fragment_app_container, fragment_details, "fragment_details").addToBackStack("fragment_details").commit();
+        }
+    }
+
 }

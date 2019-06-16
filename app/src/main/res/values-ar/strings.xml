@@ -11,4 +11,5 @@
     <string name="detials"><a href="">تفاصيل</a></string>
     <string name="price">السعر</string>
     <string name="cancell">الغاء</string>
+    <string name="back">عوده</string>
 </resources>

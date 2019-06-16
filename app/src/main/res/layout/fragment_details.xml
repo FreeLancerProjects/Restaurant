@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gray1"
+    android:clickable="true"
+    android:focusable="true"
+
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/too1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_left_arrow"
+            android:tint="@color/colorPrimary"
+            />
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/too1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true"
+
+        >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<ImageView
+    android:id="@+id/img1"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    app:layout_constraintTop_toTopOf="parent"
+
+    />
+
+        <LinearLayout
+            android:id="@+id/lin_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@+id/img1"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:text="@string/price"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                />
+
+            <TextView
+                android:id="@+id/tetxt_price"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                />
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/des"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:padding="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/lin_price"
+           app:layout_constraintBottom_toTopOf="@+id/lin_yes"
+            />
+        <LinearLayout
+            android:id="@+id/lin_yes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/des"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <Button
+                android:id="@+id/yes_sure"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/linear_shape"
+                android:text="@string/add_to_cart"
+                android:textColor="@color/white"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                />
+
+            <Button
+                android:id="@+id/No_cancell"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/linear_shape"
+                android:text="@string/back"
+                android:textColor="@color/white"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

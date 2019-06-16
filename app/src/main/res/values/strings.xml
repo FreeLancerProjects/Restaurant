@@ -12,4 +12,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="price">price</string>
     <string name="cancell">cancell</string>
+    <string name="back">back</string>
 </resources>

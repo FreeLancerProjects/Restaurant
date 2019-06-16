@@ -13,7 +13,7 @@ public class Sub_Catogry_Model_Slide
 
     ArrayList<Sub> sub;
 
-    public class Sub {
+    public class Sub implements Serializable{
         private int id;
         private String ar_title;
         private String en_title;

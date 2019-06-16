@@ -2,7 +2,6 @@ package com.creativeshare.restaurant.Adapter;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.creativeshare.restaurant.Actifities.MainActivity;
-import com.creativeshare.restaurant.Model.Catogry_Model_Slide;
 import com.creativeshare.restaurant.Model.Sub_Catogry_Model_Slide;
 import com.creativeshare.restaurant.R;
-import com.creativeshare.restaurant.Share.Common;
 import com.creativeshare.restaurant.Tags.Tags;
 import com.creativeshare.restaurant.preferences.Preferences;
 import com.squareup.picasso.Picasso;
@@ -27,20 +24,20 @@ import java.util.List;
 
 
 public class Sub_Catogries_Adapter extends RecyclerView.Adapter<Sub_Catogries_Adapter.Eyas_Holder>{
-List<Sub_Catogry_Model_Slide.Sub> list;
-Context context;
-MainActivity activity;
-Preferences preferences;
-String current_lang;
-  public Sub_Catogries_Adapter(List<Sub_Catogry_Model_Slide.Sub> list, Context context){
-this.list=list;
-this.context=context;
-activity=(MainActivity)context;
-preferences=Preferences.getInstance();
-current_lang=preferences.getlang(activity);
+    List<Sub_Catogry_Model_Slide.Sub> list;
+    Context context;
+    MainActivity activity;
+    Preferences preferences;
+    String current_lang;
+    public Sub_Catogries_Adapter(List<Sub_Catogry_Model_Slide.Sub> list, Context context){
+        this.list=list;
+        this.context=context;
+        activity=(MainActivity)context;
+        preferences=Preferences.getInstance();
+        current_lang=preferences.getlang(activity);
 
 
-   }
+    }
     @Override
     public Eyas_Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_sub_catogry,viewGroup,false);
@@ -57,21 +54,13 @@ current_lang=preferences.getlang(activity);
             viewHolder.txt_name.setText(model.getEn_title());
         }
         viewHolder.txt_price.setText(model.getPrice()+"");
-       Picasso.with(context).load(Tags.IMAGE_URL_subcatogry+model.getImage()).fit().into(viewHolder.im);
-viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        viewHolder.checkBox.setChecked(true);
-        activity.Changecheckboxvisibilty();
+        Picasso.with(context).load(Tags.IMAGE_URL_subcatogry+model.getImage()).fit().into(viewHolder.im);
 
-    }
-});
-viewHolder.detials.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Common.CreateUserNotSignInAlertDialog(activity,list.get(viewHolder.getLayoutPosition()));
-    }
-});
+        viewHolder.detials.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.DisplayFragmnetDetials(list.get(viewHolder.getLayoutPosition()));    }
+        });
     }
 
     @Override
@@ -79,9 +68,9 @@ viewHolder.detials.setOnClickListener(new View.OnClickListener() {
         return list.size();
     }
     class Eyas_Holder extends RecyclerView.ViewHolder {
-TextView txt_name,txt_price,detials;
-ImageView im;
-CheckBox checkBox;
+        TextView txt_name,txt_price,detials;
+        ImageView im;
+        CheckBox checkBox;
 
         public Eyas_Holder(@NonNull View itemView) {
             super(itemView);
@@ -90,10 +79,7 @@ CheckBox checkBox;
             detials=itemView.findViewById(R.id.details);
             im=itemView.findViewById(R.id.img1);
             checkBox=itemView.findViewById(R.id.checkbox);
-            if(current_lang.equals("ar")){
-                txt_name.setGravity(Gravity.END);
-                txt_price.setGravity(Gravity.END);
-            }
+
         }
 
 
